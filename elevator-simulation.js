@@ -46,7 +46,9 @@ Each elevator will have the following methods:
         -this will push the floor number into the queue array that the request occorued. 
     -movingReport 
         - updates currentFloor property as it moves and changes locations. 
+    -closeDoors
 
+    -openDoors
 */
 
 class Elevator{
@@ -60,22 +62,46 @@ class Elevator{
         this.doorsClosed = true;
         this.goingUp = false;
         this.goingDown = false; 
-        this.movingTo = 1;
+        this.movingTo = 0;
     }
 
     request(floor){
-        //first we will check if the request floor is the same as current floor of the elevator. if it is we will no
-        if(floor === this.currentFloor){
+        //first we will check if the request floor is the same as current floor of the elevator.
+        //*** Actually I think we should push it first and then check. */
+        // if(floor === this.currentFloor){}
 
-        }
         // when someone pushes button outside of an elevator, their floor number will get pushed into the back of the queue array. Im going to use a first in first out approach so that the people who have been waiting the longest get the elevator sooner. 
         // I will adress the case of the elevator stopping for others that are also on the same route, but not first in the queue later.  
         this.queue.push(floor);
+        
+        //lets check to see if the elevator is already heading somewhere and is in motion. If not we will send it to queue[0]
+        if(this.movingTo === 0 & !this.inMotion) {
+            
 
+        }
 
 
 
     }
+
+
+    //method to close the doors of the elevator
+    closeDoors(){
+        if(this.doorsOpen){
+            this.doorsClosed = true;
+            this.doorsOpen = false;
+        }
+    }
+
+
+    //method to open the doors of elevator, need to check if elevator is inMotion or not first. 
+    openDoors(){
+        if(this.doorsClosed & !this.inMotion){
+            this.doorsClosed = false;
+            this.doorsOpen = true;
+        }
+    }
+
 
     movingReport(newFloor){
         this.currentFloor = newFloor
