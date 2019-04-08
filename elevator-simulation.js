@@ -64,7 +64,16 @@ class Elevator{
     }
 
     request(floor){
+        //first we will check if the request floor is the same as current floor of the elevator. if it is we will no
+        if(floor === this.currentFloor){
+
+        }
+        // when someone pushes button outside of an elevator, their floor number will get pushed into the back of the queue array. Im going to use a first in first out approach so that the people who have been waiting the longest get the elevator sooner. 
+        // I will adress the case of the elevator stopping for others that are also on the same route, but not first in the queue later.  
         this.queue.push(floor);
+
+
+
 
     }
 
@@ -79,4 +88,4 @@ class Elevator{
 
 //initializing the two new elevators for building1
 const el1 = new Elevator('el1', 3);
-const el2 = new Elevator('el2', 3);
+// const el2 = new Elevator('el2', 3); I'm commenting this out for now because I first want to make sure that I can get one elevator to operate correctly, then I will focus on adding multiple elevators. 
