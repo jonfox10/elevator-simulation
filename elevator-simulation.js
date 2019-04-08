@@ -30,31 +30,53 @@ const building1 = new Building('hotel', 3, 2, ['el1', 'el2']);
 /* Now I'm going to create an Elevator class. 
 each Elevator will have the following properties:
 - name (this will be a string)
+- highestFloor (number to set limit on floors the elevato can go)
+- queue (this will be an array of all the current requests)
 - currentFloor (this will be a number)
 - inMotion (this will be a boolean)
 - doorsOpen (this will be a boolean)
 - doorsClosed (this will be a boolean)
 - goinUp (this will be a boolean)
 - goinDown (this will be a boolean)
+-
 
 
 Each elevator will have the following methods: 
-
+    -request
+        -this will push the floor number into the queue array that the request occorued. 
+    -movingReport 
+        - updates currentFloor property as it moves and changes locations. 
 
 */
 
 class Elevator{
-    constructor(name){
+    constructor(name, highestFloor){
         this.name = name;
+        this.highestFloor = highestFloor;
+        this.queue = []
         this.currentFloor = 1;
         this.inMotion = false;
         this.doorsOpen = false;
         this.doorsClosed = true;
         this.goingUp = false;
         this.goingDown = false; 
+        this.movingTo = 1;
     }
+
+    request(floor){
+        this.queue.push(floor);
+
+    }
+
+    movingReport(newFloor){
+        this.currentFloor = newFloor
+    }
+
+
+
+
 }
 
 //initializing the two new elevators for building1
-const el1 = new Elevator('el1');
-const el2 = new Elevator('el2');
+const el1 = new Elevator('el1', 3);
+const el2 = new Elevator('el2', 3);
